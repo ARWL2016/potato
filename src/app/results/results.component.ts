@@ -11,9 +11,15 @@ export class ResultsComponent implements OnInit {
 
   constructor(private data: DataService) {}
 
+  tags: String = 'potato';
+
   ngOnInit() {
     console.log('INIT');
-    this.data.getFlickrFeed({query: 'potato'});
+    this.data
+      .getFlickrFeed(this.tags)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }
 

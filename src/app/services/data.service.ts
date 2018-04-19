@@ -9,18 +9,12 @@ import 'rxjs/add/operator/do';
 export class DataService {
 
   private baseUrl = 'https://api.flickr.com/services/feeds/photos_public.gne?';
+  private key = 'f345707d395f08728388c3474bc43096';
 
   constructor(private http: Http) {}
 
-  getFlickrFeed(options) {
-    console.log('GET');
-    const { query } = options;
-    const url = `${this.baseUrl}?tags=${query}`;
-
-    return this.http.get(url)
-      .map(res => res.json())
-      .do(results => console.log(results));
+  getFlickrFeed(tags) {
+    return this.http.get(`/api/data?tags=${tags}`);
   }
 }
 
-// https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json
