@@ -9,16 +9,16 @@ import { DataService } from '../services/data.service';
 
 export class ResultsComponent implements OnInit {
 
+  tags: String = 'potato';
+  photos = [];
   constructor(private data: DataService) {}
-
-  tags: String = '----*&^$@%*)#';
 
   ngOnInit() {
     console.log('INIT');
     this.data
       .getFlickrFeed(this.tags)
-      .subscribe(data => {
-        console.log(data);
+      .subscribe(photos => {
+        this.photos = photos;
       }, err => console.log(err));
   }
 }
